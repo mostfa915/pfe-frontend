@@ -1,0 +1,27 @@
+<div>
+    <h2>Ajouter un Document</h2>
+    <form (ngSubmit)="onSubmit()">
+      <label for="titre">Titre:</label>
+      <input type="text" id="titre" [(ngModel)]="document.titre" name="titre" required><br>
+  
+      <label for="type">Type:</label>
+      <select id="type" [(ngModel)]="document.type" name="type" required>
+        <option value="COMPTE_RENDU">Compte Rendu</option>
+        <option value="REGLEMENT">Règlement</option>
+        <option value="BUDGET">Budget</option>
+        <option value="AUTRE">Autre</option>
+      </select><br>
+  
+      <label for="file">Fichier:</label>
+      <input
+      type="file"
+      id="file"
+      (change)="onFileSelected($event)"
+      accept=".pdf,image/*"
+      required
+    >
+      
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
+  

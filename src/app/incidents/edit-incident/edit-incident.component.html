@@ -1,0 +1,32 @@
+<form [formGroup]="incidentForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Description</label>
+      <input class="form-control" formControlName="description">
+    </div>
+  
+    <div class="form-group">
+      <label>Priorité</label>
+      <select class="form-control" formControlName="priorite">
+        <option value="BASSE">Basse</option>
+        <option value="MOYENNE">Moyenne</option>
+        <option value="HAUTE">Haute</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label>Statut</label>
+      <select class="form-control" formControlName="statut">
+        <option value="EN_COURS">En cours</option>
+        <option value="RESOLU">Résolu</option>
+        <option value="FERME">Fermé</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label>Fichier</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+    </div>
+  
+    <button class="btn btn-success mt-3" type="submit">Enregistrer</button>
+  </form>
+  

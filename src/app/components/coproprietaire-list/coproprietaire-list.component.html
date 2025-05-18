@@ -1,0 +1,28 @@
+<!-- list-copro.component.html -->
+<!-- list-copro.component.html -->
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg list-container">
+      <h2 class="text-center mb-4">Liste des Copropriétaires</h2>
+      
+      <mat-list *ngIf="coproprietaires.length > 0">
+        <mat-list-item *ngFor="let copro of coproprietaires">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ copro.num }} - {{ copro.email }}</strong> | 
+              <span>Solde: {{ copro.soldeCharges }} €</span>
+            </div>
+            <div>
+                <button mat-raised-button color="accent" [routerLink]="['/coproprietaires/edit', copro.id]" class="me-2 btn-blue">Modifier</button>
+                <button mat-raised-button color="warn" (click)="deleteCoproprietaire(copro.id)" class="btn-blue">Supprimer</button>
+                            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      
+      <div class="text-center mt-4">
+        <a mat-raised-button color="accent" routerLink="/coproprietaires/nouveau">➕ Ajouter un copropriétaire</a>
+      </div>
+    </div>
+  </div>
+  
