@@ -21,6 +21,7 @@ export class DocumentDetailsComponent implements OnInit {
     if (documentId) {
       // Passer documentId comme string
       this.documentService.getDocumentById(documentId).subscribe((data: any) => {
+        data.cheminFichier= data.fileUrl = `http://localhost:8081/uploads/${data.nomFichier}`;
         data.fileUrl = `http://localhost:8081/uploads/${data.nomFichier}`;
         this.document = data;
         console.log(data);

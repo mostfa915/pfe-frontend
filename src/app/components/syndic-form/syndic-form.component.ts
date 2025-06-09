@@ -23,7 +23,9 @@ export class SyndicFormComponent implements OnInit {
     this.syndicForm = this.fb.group({
       num: [''],
       email: [''],
-      mdpHash: ['']
+      password: [''],
+    role: ['SYNDIC'],
+
     });
 
     this.route.paramMap.subscribe(params => {

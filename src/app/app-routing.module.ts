@@ -16,6 +16,8 @@ import { PrestataireEditComponent } from './components/prestataire-edit/prestata
 import { DocumentEditComponent } from './components/document-edit/document-edit.component';
 import { SyndicListComponent } from './components/syndic-list/syndic-list.component';
 import { SyndicFormComponent } from './components/syndic-form/syndic-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: 'communications', component: CommunicationListComponent },
@@ -36,7 +38,8 @@ const routes: Routes = [
   { path: 'syndics', component: SyndicListComponent },
 { path: 'syndics/edit/:id', component: SyndicFormComponent },
 { path: 'syndics/new', component: SyndicFormComponent },
-
+{ path: '', component: LoginComponent },
+{ path: 'home', component: AppComponent }
 
 
 ];

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+
 
 export interface Coproprietaire {
   id: number;
@@ -17,7 +19,22 @@ export interface Coproprietaire {
 export class CoproprietaireService {
   private apiUrl = 'http://localhost:8081/api/Coproprietaires';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , 
+      private authService: AuthService) {}
+
+   // Ajout d'une méthode pour inclure l'en-tête Authorization
+    private getHttpOptions(): { headers: HttpHeaders } {
+      const token = this.authService.getToken();
+      let headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+  
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+  
+      return { headers };
+    }
 
   getAll(): Observable<Coproprietaire[]> {
     return this.http.get<Coproprietaire[]>(this.apiUrl);
@@ -28,7 +45,9 @@ export class CoproprietaireService {
   }
 
   create(copro: Coproprietaire): Observable<Coproprietaire> {
-    return this.http.post<Coproprietaire>(this.apiUrl, copro);
+    return this.http.post<Coproprietaire>('http://localhost:8081/api/auth/register', copro , {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      });
   }
 
   update(id: number, copro: Coproprietaire): Observable<Coproprietaire> {

@@ -10,3 +10,7 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+  if (!environment.production) {
+    (window as any).__disableCORS = true;
+  }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CommunicationListComponent } from './components/communication-list/communication-list.component';
 import { CoproprietaireListComponent } from './components/coproprietaire-list/coproprietaire-list.component';
@@ -30,10 +30,14 @@ import { PrestataireEditComponent } from './components/prestataire-edit/prestata
 import { DocumentEditComponent } from './components/document-edit/document-edit.component';
 import { SyndicListComponent } from './components/syndic-list/syndic-list.component';
 import { SyndicFormComponent } from './components/syndic-form/syndic-form.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
-    AppComponent,CommunicationListComponent, CoproprietaireListComponent, CoproprietaireFormComponent, CoproprietaireEditComponent, DocumentListComponent,AjouterDocumentComponent, DocumentDetailsComponent, AjouterIncidentComponent, IncidentListComponent, EditIncidentComponent, PrestataireComponent, PrestataireListComponent, PrestataireEditComponent, DocumentEditComponent, SyndicListComponent, SyndicFormComponent
+    AppComponent,CommunicationListComponent, CoproprietaireListComponent, CoproprietaireFormComponent, CoproprietaireEditComponent, DocumentListComponent,AjouterDocumentComponent, DocumentDetailsComponent, AjouterIncidentComponent, IncidentListComponent, EditIncidentComponent, PrestataireComponent, PrestataireListComponent, PrestataireEditComponent, DocumentEditComponent, SyndicListComponent, SyndicFormComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,17 +47,20 @@ import { SyndicFormComponent } from './components/syndic-form/syndic-form.compon
     BrowserAnimationsModule,
     MatListModule,
     ReactiveFormsModule,
-   
-   
+    MatProgressSpinnerModule,
+    MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatOptionModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

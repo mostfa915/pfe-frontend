@@ -18,7 +18,7 @@ export class CoproprietaireFormComponent {
     this.coproForm = this.fb.group({
       num: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      mdpHash: ['', Validators.required],
+      password: ['', Validators.required],
       role: ['COPROPRIETAIRE'],
       soldeCharges: [0, Validators.required],
     });
